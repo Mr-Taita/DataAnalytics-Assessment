@@ -1,4 +1,4 @@
-**Q1 – High-Value Customers with Multiple Products**
+**Question 1 – High-Value Customers with Multiple Products**
 
 **Approach Explanation:**
 
@@ -12,9 +12,9 @@ To find customers who hold both a funded savings plan and a funded investment pl
 
 **Slow Query:** An initial single-query approach timed out. I simplified the logic with CTEs and applied filters (confirmed_amount > 0) early to reduce the data scanned.
 
-**Q2 – Transaction Frequency Analysis
+**Question 2 – Transaction Frequency Analysis**
 
-Approach Explanation:**
+**Approach Explanation:**
 
 I calculated each user’s transaction frequency by first grouping their transactions by month ('%Y-%m') and computing a monthly count. Then I averaged those monthly counts per user, handled zero-month cases with NULLIF, and classified users into High (≥10), Medium (3–9), and Low (≤2) frequency tiers. A final grouping aggregated customer counts and overall average rates per category, ordered by business priority.
 
@@ -27,7 +27,7 @@ I calculated each user’s transaction frequency by first grouping their transac
 **Balancing Clarity & Speed:** A purely nested query was fast but hard to follow, so I used a single CTE for clarity without sacrificing performance.
 
 
-**Q3 – Account Inactivity Alert**
+**Question 3 – Account Inactivity Alert**
 
 **Approach Explanation:**
 
@@ -41,7 +41,7 @@ To flag plans inactive for over a year, I started from the plans_plan table, fil
 
 **NULL Handling:** Plans with never-seen transactions had last_transaction_date = NULL; I explicitly checked for NULL in HAVING to capture them.
 
-**Q4 – Customer Lifetime Value Estimation**
+**Question 4 – Customer Lifetime Value Estimation**
 
 **Approach Explanation:**
 
